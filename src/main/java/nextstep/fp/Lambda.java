@@ -26,20 +26,9 @@ public class Lambda {
         }).start();
     }
 
-    public static int sumAll(List<Integer> numbers) {
+    public static int sumAll(List<Integer> numbers, Conditional c) {
         return numbers.stream()
-                .reduce(0, Integer::sum);
-    }
-
-    public static int sumAllEven(List<Integer> numbers) {
-        return numbers.stream()
-                .filter(number -> number % 2 == 0)
-                .reduce(0, Integer::sum);
-    }
-
-    public static int sumAllOverThree(List<Integer> numbers) {
-        return numbers.stream()
-                .filter(number -> number > 3)
+                .filter(c::test)
                 .reduce(0, Integer::sum);
     }
 }
